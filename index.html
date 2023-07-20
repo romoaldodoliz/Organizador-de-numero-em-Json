@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doliz - Organizador de Números</title>
+</head>
+<body>
+    <h1>Organizador de Números made with <img src="https://www.svgrepo.com/show/299502/heart.svg" height="15"> Doliz</h1>
+    
+    <p>Insira os números separados por espaço:</p>
+    <input type="text" id="inputNumbers" placeholder="Exemplo: 10 5 20 3">
+    <button onclick="organizarNumeros()">Organizar</button>
+
+    <div id="result"></div>
+
+    <script>
+        function organizarNumeros() {
+            const inputNumbers = document.getElementById('inputNumbers').value;
+            const numbersArray = inputNumbers.split(' ').map(Number);
+            const sortedNumbers = numbersArray.sort((a, b) => a - b);
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '';
+
+            for (let i = 0; i < sortedNumbers.length; i += 60) {
+                const chunk = sortedNumbers.slice(i, i + 60);
+                const paragraph = document.createElement('p');
+                paragraph.textContent = JSON.stringify(chunk);
+                resultDiv.appendChild(paragraph);
+            }
+        }
+    </script>
+</body>
+</html>
